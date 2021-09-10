@@ -1,0 +1,100 @@
+int left1 = 2;
+int left2 = 3;
+int right1 = 4;
+int right2 = 5;
+int mid1 = 6;
+int mid2 = 7;
+int LS;
+int RS;
+int Lm1;
+int Lm2;
+int Rm1;
+int Rm2;
+
+
+void setup() {
+  // pput your setup code here, to run once:
+  pinMode(LS, INPUT);
+  pinMode(RS, INPUT);
+  pinMode(Lm1, OUTPUT);
+  pinMode(Lm2, OUTPUT);
+  pinMode(Rm1, OUTPUT);
+  pinMode(Rm2, OUTPUT);
+}
+void loop() {
+  // put your main code here, to run repeatedly:
+  //11100
+  if (digitalRead(left2) == 1 && digitalRead(left1 ) == 1 && digitalRead(mid1) == 1 && digitalRead(right1) == 0 && digitalRead(right2) == 0)
+  {
+    moveleft();
+  }
+  //11111
+  else if (digitalRead(left2) == 1 && digitalRead(left1) == 1 && digitalRead(mid1) == 1 && digitalRead(right1) == 1 && digitalRead(right2) == 1)
+  {
+    moveleft();
+  }
+  //00100
+  else if (digitalRead(left2) == 0 && digitalRead(left1) == 0 && digitalRead(mid1) == 1 && digitalRead(right1) == 0 && digitalRead(right2) == 0)
+  {
+    moveforward();
+  }
+  //001011
+  else if (digitalRead(left2) == 0 && digitalRead(left1) == 0 && digitalRead(mid1) == 1 && digitalRead(mid2) == 0 && digitalRead(right1) == 1 && digitalRead(right2) == 1)
+  {
+    moveright();
+  }
+  //011111
+  else if (digitalRead(left2) == 0 && digitalRead(left1) == 1 && digitalRead(mid1) == 1 && digitalRead(mid2) == 1 && digitalRead(right1) == 1 && digitalRead(right2) == 1)
+  {
+    moveforward();
+  }
+  //001000
+  else if (digitalRead(left2) == 0 && digitalRead(left1) == 0 && digitalRead(mid1) == 1 && digitalRead(mid2) == 0 && digitalRead(right1) == 0 && digitalRead(right2) == 0)
+  {
+    turnaround();
+  }
+  //111111
+  else if (digitalRead(left2) == 1 && digitalRead(left1) == 1 && digitalRead(mid1) == 1 && digitalRead(mid2) == 1 && digitalRead(right1) == 1 && digitalRead(right2) == 1)
+  {
+    moveleft();
+  }
+
+
+}
+
+void moveforward()
+{
+  digitalWrite(Lm1, LOW);
+  digitalWrite(Lm2, HIGH);
+  digitalWrite(Rm1, LOW);
+  digitalWrite(Rm2, HIGH);
+}
+void moveleft()
+{
+  digitalWrite(Lm1, LOW);
+  digitalWrite(Lm2, LOW);
+  digitalWrite(Rm1, LOW);
+  digitalWrite(Rm2, HIGH);
+}
+void moveright()
+{
+  digitalWrite(Lm1, LOW);
+  digitalWrite(Lm2, HIGH);
+  digitalWrite(Rm1, LOW);
+  digitalWrite(Rm2, LOW);
+}
+void turnaround()
+{
+  digitalWrite(Lm1, LOW);
+  digitalWrite(Lm2, HIGH);
+  digitalWrite(Rm1, HIGH);
+  digitalWrite(Rm2, LOW);
+}
+void stop()
+{
+  digitalWrite(Lm1, LOW);
+  digitalWrite(Lm2, LOW);
+  digitalWrite(Rm1, LOW);
+  digitalWrite(Rm2, LOW);
+}
+
